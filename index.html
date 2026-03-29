@@ -9,672 +9,127 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --orange: #FF6B00;
-            --orange-light: #FFF3E8;
-            --charcoal: #2A2A2A;
-            --charcoal-light: #444444;
-            --red: #CC0000;
-            --red-light: #FFE8E8;
-            --green: #00AA44;
-            --green-light: #E8FFE8;
-            --blue: #0066CC;
-            --bg: #FAFAF8;
-            --white: #FFFFFF;
-            --gray-100: #F5F5F3;
-            --gray-200: #E8E8E4;
-            --gray-300: #D0D0CC;
-            --gray-400: #999;
-            --grid-color: rgba(0,0,0,0.04);
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
-            --radius: 8px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--charcoal);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Grid paper background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image:
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-            background-size: 24px 24px;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* ── HEADER ── */
-        .header {
-            background: var(--white);
-            border-bottom: 3px solid var(--orange);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .header-inner {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--orange);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: -1px;
-            box-shadow: 3px 3px 0 var(--charcoal);
-        }
-
-        .logo-text {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--charcoal);
-            letter-spacing: -0.5px;
-        }
-
-        .logo-text span {
-            color: var(--orange);
-        }
-
-        .tagline {
-            font-size: 13px;
-            color: var(--gray-400);
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        /* ── HERO ── */
-        .hero {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 48px 24px 32px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(28px, 5vw, 42px);
-            font-weight: 700;
-            color: var(--charcoal);
-            line-height: 1.2;
-            margin-bottom: 12px;
-            letter-spacing: -1px;
-        }
-
-        .hero h1 span {
-            color: var(--orange);
-        }
-
-        .hero p {
-            font-size: 17px;
-            color: var(--charcoal-light);
-            max-width: 540px;
-            margin: 0 auto;
-        }
-
-        /* ── CALCULATOR SECTION ── */
-        .calc-section {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 24px 60px;
-        }
-
-        .calc-container {
-            background: var(--white);
-            border: 2px solid var(--gray-200);
-            border-radius: 12px;
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-        }
-
-        .calc-header {
-            background: var(--charcoal);
-            color: white;
-            padding: 20px 28px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .calc-header-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--orange);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-
-        .calc-header h2 {
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: -0.3px;
-        }
-
-        .calc-header p {
-            font-size: 13px;
-            opacity: 0.7;
-            margin-top: 2px;
-        }
-
-        .calc-body {
-            padding: 32px 28px;
-        }
-
-        /* ── INPUT GRID ── */
-        .input-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 28px;
-        }
-
-        @media (max-width: 600px) {
-            .input-grid { grid-template-columns: 1fr; }
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .input-group label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--charcoal);
-            letter-spacing: 0.2px;
-        }
-
-        .input-group .hint {
-            font-size: 11px;
-            color: var(--gray-400);
-            font-weight: 400;
-        }
-
-        .input-group input, .input-group select {
-            font-family: 'DM Mono', monospace;
-            font-size: 16px;
-            padding: 12px 14px;
-            border: 2px solid var(--gray-200);
-            border-radius: var(--radius);
-            background: var(--gray-100);
-            color: var(--charcoal);
-            transition: border-color 0.2s, box-shadow 0.2s;
-            width: 100%;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            outline: none;
-            border-color: var(--orange);
-            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.15);
-            background: var(--white);
-        }
-
-        .input-group input::placeholder {
-            color: var(--gray-300);
-        }
-
-        /* ── FILING STATUS ── */
-        .filing-toggle {
-            display: flex;
-            gap: 0;
-            border: 2px solid var(--gray-200);
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--gray-100);
-        }
-
-        .filing-toggle button {
-            flex: 1;
-            padding: 12px 14px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            background: transparent;
-            color: var(--gray-400);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .filing-toggle button.active {
-            background: var(--orange);
-            color: white;
-        }
-
-        /* ── CALCULATE BUTTON ── */
-        .calc-btn {
-            width: 100%;
-            padding: 16px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 17px;
-            font-weight: 700;
-            background: var(--orange);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            cursor: pointer;
-            letter-spacing: 0.3px;
-            transition: transform 0.15s, box-shadow 0.15s;
-            box-shadow: 0 3px 0 #CC5500;
-        }
-
-        .calc-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 0 #CC5500;
-        }
-
-        .calc-btn:active {
-            transform: translateY(1px);
-            box-shadow: 0 1px 0 #CC5500;
-        }
-
-        /* ── RESULTS ── */
-        .results {
-            display: none;
-            margin-top: 32px;
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .results.visible { display: block; }
-
-        .results-divider {
-            height: 2px;
-            background: var(--gray-200);
-            margin-bottom: 28px;
-        }
-
-        .result-headline {
-            text-align: center;
-            margin-bottom: 28px;
-        }
-
-        .result-headline .breakeven-label {
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-
-        .result-headline .breakeven-value {
-            font-family: 'DM Mono', monospace;
-            font-size: clamp(36px, 8vw, 56px);
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -2px;
-        }
-
-        .result-headline .breakeven-sub {
-            font-size: 15px;
-            color: var(--charcoal-light);
-            margin-top: 6px;
-        }
-
-        /* ── RESULT CARDS ── */
-        .result-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        @media (max-width: 600px) {
-            .result-cards { grid-template-columns: 1fr; }
-        }
-
-        .result-card {
-            padding: 20px;
-            border-radius: var(--radius);
-            border: 2px solid;
-        }
-
-        .result-card .card-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 6px;
-        }
-
-        .result-card .card-value {
-            font-family: 'DM Mono', monospace;
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .result-card .card-detail {
-            font-size: 13px;
-            margin-top: 4px;
-            opacity: 0.8;
-        }
-
-        .card-convert {
-            background: var(--orange-light);
-            border-color: var(--orange);
-        }
-        .card-convert .card-label { color: var(--orange); }
-        .card-convert .card-value { color: var(--charcoal); }
-
-        .card-noconvert {
-            background: var(--gray-100);
-            border-color: var(--gray-200);
-        }
-        .card-noconvert .card-label { color: var(--gray-400); }
-        .card-noconvert .card-value { color: var(--charcoal); }
-
-        /* ── NET BENEFIT BOX (color-graded) ── */
-        .net-benefit-box {
-            text-align: center;
-            padding: 24px;
-            border-radius: var(--radius);
-            border: 3px solid;
-            margin-bottom: 24px;
-            transition: all 0.3s;
-        }
-
-        .net-benefit-box .nb-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-
-        .net-benefit-box .nb-value {
-            font-family: 'DM Mono', monospace;
-            font-size: clamp(32px, 7vw, 48px);
-            font-weight: 700;
-            letter-spacing: -1.5px;
-        }
-
-        .net-benefit-box .nb-percent {
-            font-family: 'DM Mono', monospace;
-            font-size: 22px;
-            font-weight: 600;
-            margin-top: 2px;
-        }
-
-        .net-benefit-box .nb-verdict {
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: 8px;
-        }
-
-        /* ── CHART ── */
-        .chart-container {
-            background: var(--gray-100);
-            border: 2px solid var(--gray-200);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-bottom: 24px;
-        }
-
-        .chart-container h3 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--charcoal);
-        }
-
-        canvas {
-            width: 100% !important;
-            height: 300px !important;
-        }
-
-        /* ── ASSUMPTIONS TABLE ── */
-        .assumptions {
-            background: var(--gray-100);
-            border: 2px solid var(--gray-200);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-bottom: 16px;
-        }
-
-        .assumptions h3 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .assumptions table {
-            width: 100%;
-            font-size: 13px;
-            border-collapse: collapse;
-        }
-
-        .assumptions td {
-            padding: 6px 0;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .assumptions td:first-child {
-            color: var(--gray-400);
-            width: 55%;
-        }
-
-        .assumptions td:last-child {
-            font-family: 'DM Mono', monospace;
-            font-weight: 500;
-            text-align: right;
-        }
-
-        /* ── DISCLAIMER ── */
-        .disclaimer {
-            text-align: center;
-            font-size: 12px;
-            color: var(--gray-400);
-            padding: 12px 0 0;
-            line-height: 1.5;
-        }
-
-        /* ── VIDEOS SECTION ── */
-        .videos-section {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 24px 60px;
-        }
-
-        .videos-section h2 {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--charcoal);
-            text-align: center;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .videos-section .videos-sub {
-            text-align: center;
-            font-size: 15px;
-            color: var(--gray-400);
-            margin-bottom: 28px;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .video-card {
-            background: var(--white);
-            border: 2px solid var(--gray-200);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .video-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .video-thumb {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: var(--gray-200);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .video-play {
-            position: absolute;
-            width: 48px;
-            height: 48px;
-            background: rgba(0,0,0,0.7);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .video-play::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 8px 0 8px 16px;
-            border-color: transparent transparent transparent white;
-            margin-left: 3px;
-        }
-
-        .video-info {
-            padding: 14px 16px;
-        }
-
-        .video-info .cluster-tag {
-            display: inline-block;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            margin-bottom: 6px;
-        }
-
-        .tag-roth { background: #FFF3E8; color: var(--orange); }
-        .tag-ss { background: #E8F0FF; color: var(--blue); }
-        .tag-irmaa { background: #FFE8E8; color: var(--red); }
-        .tag-tax { background: #E8FFE8; color: var(--green); }
-
-        .video-info h3 {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 1.4;
-            color: var(--charcoal);
-        }
-
-        /* ── FOOTER ── */
-        .footer {
-            background: var(--charcoal);
-            color: rgba(255,255,255,0.6);
-            text-align: center;
-            padding: 32px 24px;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .footer a {
-            color: var(--orange);
-            text-decoration: none;
-        }
-
-        .footer .footer-slogan {
-            color: rgba(255,255,255,0.3);
-            font-size: 12px;
-            margin-top: 8px;
-            letter-spacing: 0.5px;
-        }
-
-        /* ── UTILITY ── */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0,0,0,0);
-        }
+        :root{--orange:#FF6B00;--orange-light:#FFF3E8;--charcoal:#2A2A2A;--charcoal-light:#444;--red:#CC0000;--green:#00AA44;--blue:#0066CC;--bg:#FAFAF8;--white:#FFF;--gray-100:#F5F5F3;--gray-200:#E8E8E4;--gray-300:#D0D0CC;--gray-400:#999;--grid-color:rgba(0,0,0,0.04);--shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 12px rgba(0,0,0,0.1);--shadow-lg:0 8px 30px rgba(0,0,0,0.12);--radius:8px}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--charcoal);line-height:1.6;-webkit-font-smoothing:antialiased}
+        body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid-color) 1px,transparent 1px),linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;z-index:-1}
+        .header{background:var(--white);border-bottom:3px solid var(--orange);padding:20px 0;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm)}
+        .header-inner{max-width:960px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+        .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+        .logo-icon{width:40px;height:40px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;letter-spacing:-1px;box-shadow:3px 3px 0 var(--charcoal)}
+        .logo-text{font-size:20px;font-weight:700;color:var(--charcoal);letter-spacing:-.5px}
+        .logo-text span{color:var(--orange)}
+        .tagline{font-size:13px;color:var(--gray-400);font-weight:500;letter-spacing:.5px}
+        .hero{max-width:960px;margin:0 auto;padding:48px 24px 32px;text-align:center}
+        .hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;color:var(--charcoal);line-height:1.2;margin-bottom:12px;letter-spacing:-1px}
+        .hero h1 span{color:var(--orange)}
+        .hero p{font-size:17px;color:var(--charcoal-light);max-width:540px;margin:0 auto}
+        .calc-section{max-width:960px;margin:0 auto;padding:0 24px 60px}
+        .calc-container{background:var(--white);border:2px solid var(--gray-200);border-radius:12px;box-shadow:var(--shadow-md);overflow:hidden}
+        .calc-header{background:var(--charcoal);color:white;padding:20px 28px;display:flex;align-items:center;gap:12px}
+        .calc-header-icon{width:36px;height:36px;background:var(--orange);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px}
+        .calc-header h2{font-size:18px;font-weight:600}
+        .calc-header p{font-size:13px;opacity:.7;margin-top:2px}
+        .calc-body{padding:32px 28px}
+        @media(max-width:600px){.calc-body{padding:24px 18px}}
+        .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+        @media(max-width:600px){.input-grid{grid-template-columns:1fr}}
+        .input-group{display:flex;flex-direction:column;gap:6px}
+        .input-group label{font-size:13px;font-weight:600;color:var(--charcoal)}
+        .input-group .hint{font-size:11px;color:var(--gray-400);font-weight:400}
+        .input-group input,.input-group select{font-family:'DM Mono',monospace;font-size:16px;padding:12px 14px;border:2px solid var(--gray-200);border-radius:var(--radius);background:var(--gray-100);color:var(--charcoal);transition:border-color .2s,box-shadow .2s;width:100%}
+        .input-group input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,107,0,.15);background:var(--white)}
+        .filing-toggle{display:flex;border:2px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;background:var(--gray-100)}
+        .filing-toggle button{flex:1;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;border:none;background:transparent;color:var(--gray-400);cursor:pointer;transition:all .2s}
+        .filing-toggle button.active{background:var(--orange);color:white}
+        .calc-btn{width:100%;padding:16px;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;background:var(--orange);color:white;border:none;border-radius:var(--radius);cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 0 #CC5500}
+        .calc-btn:hover{transform:translateY(-1px);box-shadow:0 4px 0 #CC5500}
+        .calc-btn:active{transform:translateY(1px);box-shadow:0 1px 0 #CC5500}
+        .results{display:none;margin-top:32px;animation:fadeIn .4s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        .results.visible{display:block}
+        .results-divider{height:2px;background:var(--gray-200);margin-bottom:28px}
+        .result-headline{text-align:center;margin-bottom:28px}
+        .result-headline .breakeven-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+        .result-headline .breakeven-value{font-family:'DM Mono',monospace;font-size:clamp(36px,8vw,56px);font-weight:700;line-height:1.1;letter-spacing:-2px}
+        .result-headline .breakeven-sub{font-size:15px;color:var(--charcoal-light);margin-top:6px}
+        .result-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+        @media(max-width:600px){.result-cards{grid-template-columns:1fr}}
+        .result-card{padding:20px;border-radius:var(--radius);border:2px solid}
+        .result-card .card-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+        .result-card .card-value{font-family:'DM Mono',monospace;font-size:28px;font-weight:700;letter-spacing:-1px}
+        .result-card .card-detail{font-size:13px;margin-top:4px;opacity:.8}
+        .card-convert{background:var(--orange-light);border-color:var(--orange)}
+        .card-convert .card-label{color:var(--orange)}
+        .card-noconvert{background:var(--gray-100);border-color:var(--gray-200)}
+        .card-noconvert .card-label{color:var(--gray-400)}
+        .net-benefit-box{text-align:center;padding:24px;border-radius:var(--radius);border:3px solid;margin-bottom:24px}
+        .net-benefit-box .nb-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+        .net-benefit-box .nb-value{font-family:'DM Mono',monospace;font-size:clamp(32px,7vw,48px);font-weight:700;letter-spacing:-1.5px}
+        .net-benefit-box .nb-percent{font-family:'DM Mono',monospace;font-size:22px;font-weight:600;margin-top:2px}
+        .net-benefit-box .nb-verdict{font-size:14px;font-weight:600;margin-top:8px}
+        .chart-container{background:var(--gray-100);border:2px solid var(--gray-200);border-radius:var(--radius);padding:20px;margin-bottom:24px}
+        .chart-container h3{font-size:14px;font-weight:600;margin-bottom:16px}
+        canvas{width:100%!important;height:300px!important}
+        .assumptions{background:var(--gray-100);border:2px solid var(--gray-200);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+        .assumptions h3{font-size:14px;font-weight:600;margin-bottom:12px}
+        .assumptions table{width:100%;font-size:13px;border-collapse:collapse}
+        .assumptions td{padding:6px 0;border-bottom:1px solid var(--gray-200)}
+        .assumptions td:first-child{color:var(--gray-400);width:55%}
+        .assumptions td:last-child{font-family:'DM Mono',monospace;font-weight:500;text-align:right}
+        .disclaimer{text-align:center;font-size:12px;color:var(--gray-400);padding:12px 0 0;line-height:1.5}
+        .videos-section{max-width:960px;margin:0 auto;padding:0 24px 60px}
+        .videos-section h2{font-size:24px;font-weight:700;color:var(--charcoal);text-align:center;margin-bottom:8px;letter-spacing:-.5px}
+        .videos-section .videos-sub{text-align:center;font-size:15px;color:var(--gray-400);margin-bottom:28px}
+        .video-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+        @media(max-width:900px){.video-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:500px){.video-grid{grid-template-columns:1fr}}
+        .video-card{background:var(--white);border:2px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;display:block}
+        .video-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+        .video-thumb{width:100%;aspect-ratio:16/9;background:var(--gray-200);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+        .video-thumb img{width:100%;height:100%;object-fit:cover}
+        .video-play{position:absolute;width:44px;height:44px;background:rgba(0,0,0,.7);border-radius:50%;display:flex;align-items:center;justify-content:center}
+        .video-play::after{content:'';display:block;width:0;height:0;border-style:solid;border-width:7px 0 7px 14px;border-color:transparent transparent transparent white;margin-left:3px}
+        .video-info{padding:12px 14px}
+        .video-info .cluster-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding:3px 8px;border-radius:4px;margin-bottom:6px}
+        .tag-roth{background:#FFF3E8;color:var(--orange)}
+        .tag-ss{background:#E8F0FF;color:var(--blue)}
+        .tag-irmaa{background:#FFE8E8;color:var(--red)}
+        .tag-tax{background:#E8FFE8;color:var(--green)}
+        .tag-new{background:var(--orange);color:white}
+        .video-info h3{font-size:13px;font-weight:600;line-height:1.4;color:var(--charcoal)}
+        .channel-section{max-width:960px;margin:0 auto;padding:0 24px 60px}
+        .channel-box{background:var(--charcoal);border-radius:12px;padding:32px;display:flex;align-items:center;gap:24px;box-shadow:var(--shadow-lg)}
+        @media(max-width:600px){.channel-box{flex-direction:column;text-align:center;padding:28px 20px}}
+        .channel-avatar{width:72px;height:72px;min-width:72px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:white;box-shadow:0 0 0 3px rgba(255,107,0,.3)}
+        .channel-info{flex:1}
+        .channel-info h2{color:white;font-size:20px;font-weight:700;margin-bottom:8px}
+        .channel-info p{color:rgba(255,255,255,.6);font-size:14px;line-height:1.6;margin-bottom:16px}
+        .channel-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:white;text-decoration:none;padding:10px 20px;border-radius:var(--radius);font-size:14px;font-weight:700;transition:background .2s}
+        .channel-btn:hover{background:#AA0000}
+        .channel-btn svg{width:18px;height:18px;fill:currentColor}
+        .footer{background:var(--charcoal);color:rgba(255,255,255,.6);text-align:center;padding:32px 24px;font-size:13px;line-height:1.8}
+        .footer a{color:var(--orange);text-decoration:none}
+        .footer .footer-slogan{color:rgba(255,255,255,.3);font-size:12px;margin-top:8px;letter-spacing:.5px}
     </style>
 </head>
 <body>
 
-<!-- ════ HEADER ════ -->
 <header class="header">
     <div class="header-inner">
         <a href="/" class="logo">
             <div class="logo-icon">MM</div>
-            <div>
-                <div class="logo-text">Money <span>Mechanics</span></div>
-            </div>
+            <div><div class="logo-text">Money <span>Mechanics</span></div></div>
         </a>
         <div class="tagline">No opinions. Just the math.</div>
     </div>
 </header>
 
-<!-- ════ HERO ════ -->
 <section class="hero">
     <h1>Retirement Math <span>Tools</span></h1>
     <p>Free calculators based on current IRS rules. Your data stays in your browser — nothing is stored on our servers.</p>
 </section>
 
-<!-- ════ CALCULATOR ════ -->
 <section class="calc-section">
     <div class="calc-container">
         <div class="calc-header">
@@ -684,438 +139,133 @@
                 <p>How long until a Roth conversion pays off?</p>
             </div>
         </div>
-
         <div class="calc-body">
-            <!-- Filing Status -->
-            <div class="input-group" style="margin-bottom: 20px;">
+            <div class="input-group" style="margin-bottom:20px">
                 <label>Filing Status</label>
                 <div class="filing-toggle">
-                    <button type="button" class="active" onclick="setFiling('single')">Single</button>
-                    <button type="button" onclick="setFiling('mfj')">Married Filing Jointly</button>
+                    <button type="button" class="active" onclick="setFiling(this,'single')">Single</button>
+                    <button type="button" onclick="setFiling(this,'mfj')">Married Filing Jointly</button>
                 </div>
             </div>
-
             <div class="input-grid">
-                <div class="input-group">
-                    <label>Your Current Age <span class="hint">(years)</span></label>
-                    <input type="number" id="age" placeholder="62" min="50" max="90" value="">
-                </div>
-                <div class="input-group">
-                    <label>Life Expectancy <span class="hint">(years)</span></label>
-                    <input type="number" id="lifeExpectancy" placeholder="85" min="65" max="100" value="">
-                </div>
-                <div class="input-group">
-                    <label>Conversion Amount <span class="hint">($)</span></label>
-                    <input type="text" id="conversionAmount" placeholder="50,000" inputmode="numeric">
-                </div>
-                <div class="input-group">
-                    <label>Current Tax Rate <span class="hint">(% — rate you pay NOW on the conversion)</span></label>
-                    <input type="number" id="currentTaxRate" placeholder="22" min="0" max="50" step="0.1" value="">
-                </div>
-                <div class="input-group">
-                    <label>Future Tax Rate <span class="hint">(% — rate you'd pay withdrawing later)</span></label>
-                    <input type="number" id="futureTaxRate" placeholder="24" min="0" max="50" step="0.1" value="">
-                </div>
-                <div class="input-group">
-                    <label>Expected Annual Return <span class="hint">(% before inflation)</span></label>
-                    <input type="number" id="returnRate" placeholder="6" min="0" max="15" step="0.1" value="">
-                </div>
+                <div class="input-group"><label>Your Current Age <span class="hint">(years)</span></label><input type="number" id="age" placeholder="62" min="50" max="90"></div>
+                <div class="input-group"><label>Life Expectancy <span class="hint">(years)</span></label><input type="number" id="lifeExpectancy" placeholder="85" min="65" max="100"></div>
+                <div class="input-group"><label>Conversion Amount <span class="hint">($)</span></label><input type="text" id="conversionAmount" placeholder="50,000" inputmode="numeric"></div>
+                <div class="input-group"><label>Current Tax Rate <span class="hint">(% — rate you pay NOW)</span></label><input type="number" id="currentTaxRate" placeholder="22" min="0" max="50" step="0.1"></div>
+                <div class="input-group"><label>Future Tax Rate <span class="hint">(% — rate at withdrawal)</span></label><input type="number" id="futureTaxRate" placeholder="24" min="0" max="50" step="0.1"></div>
+                <div class="input-group"><label>Expected Annual Return <span class="hint">(% before inflation)</span></label><input type="number" id="returnRate" placeholder="6" min="0" max="15" step="0.1"></div>
             </div>
-
             <button class="calc-btn" onclick="calculate()">Calculate Breakeven</button>
-
-            <!-- ── RESULTS ── -->
             <div class="results" id="results">
                 <div class="results-divider"></div>
-
-                <div class="result-headline" id="resultHeadline">
-                    <!-- Filled by JS -->
-                </div>
-
-                <div class="net-benefit-box" id="netBenefitBox">
-                    <!-- Filled by JS -->
-                </div>
-
+                <div class="result-headline" id="resultHeadline"></div>
+                <div class="net-benefit-box" id="netBenefitBox"></div>
                 <div class="result-cards">
-                    <div class="result-card card-convert" id="cardConvert">
-                        <!-- Filled by JS -->
-                    </div>
-                    <div class="result-card card-noconvert" id="cardNoConvert">
-                        <!-- Filled by JS -->
-                    </div>
+                    <div class="result-card card-convert" id="cardConvert"></div>
+                    <div class="result-card card-noconvert" id="cardNoConvert"></div>
                 </div>
-
-                <div class="chart-container">
-                    <h3>Projected After-Tax Value Over Time</h3>
-                    <canvas id="chart"></canvas>
-                </div>
-
-                <div class="assumptions" id="assumptions">
-                    <!-- Filled by JS -->
-                </div>
-
-                <div class="disclaimer">
-                    All calculations based on current IRS rules. This is a mathematical simulation, not financial advice.<br>
-                    Consult a qualified tax professional for your specific situation.
-                </div>
+                <div class="chart-container"><h3>Projected After-Tax Value Over Time</h3><canvas id="chart"></canvas></div>
+                <div class="assumptions" id="assumptions"></div>
+                <div class="disclaimer">All calculations based on current IRS rules. This is a mathematical simulation, not financial advice.<br>Consult a qualified tax professional for your specific situation.</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ════ VIDEOS ════ -->
 <section class="videos-section">
     <h2>Watch the Math</h2>
     <p class="videos-sub">Deep dives into retirement tax mechanics</p>
-
-    <div class="video-grid">
-        <a class="video-card" href="https://www.youtube.com/@GetMoneyMechanics" target="_blank" rel="noopener">
-            <div class="video-thumb" style="background: linear-gradient(135deg, #FF6B00 0%, #CC5500 100%);">
-                <div class="video-play"></div>
-            </div>
-            <div class="video-info">
-                <span class="cluster-tag tag-roth">ROTH</span>
-                <h3>$50K Roth Conversion — Breakeven Analysis</h3>
-            </div>
+    <div class="video-grid" id="videoGrid">
+        <a class="video-card" href="https://youtu.be/k95BDFlGjy0" target="_blank" rel="noopener">
+            <div class="video-thumb"><img src="https://img.youtube.com/vi/k95BDFlGjy0/mqdefault.jpg" alt="Roth Breakeven" loading="lazy"><div class="video-play"></div></div>
+            <div class="video-info"><span class="cluster-tag tag-roth">ROTH</span><h3>The Roth Conversion Breakeven: When $50K Actually Pays Off</h3></div>
         </a>
-
-        <a class="video-card" href="https://www.youtube.com/@GetMoneyMechanics" target="_blank" rel="noopener">
-            <div class="video-thumb" style="background: linear-gradient(135deg, #0066CC 0%, #004499 100%);">
-                <div class="video-play"></div>
-            </div>
-            <div class="video-info">
-                <span class="cluster-tag tag-ss">SOCIAL SECURITY</span>
-                <h3>The $182,000 Social Security Mistake</h3>
-            </div>
+        <a class="video-card" href="https://youtu.be/jQ6G3vdE3rg" target="_blank" rel="noopener">
+            <div class="video-thumb"><img src="https://img.youtube.com/vi/jQ6G3vdE3rg/mqdefault.jpg" alt="SS $182K Mistake" loading="lazy"><div class="video-play"></div></div>
+            <div class="video-info"><span class="cluster-tag tag-ss">SOCIAL SECURITY</span><h3>The $182,000 Social Security Mistake</h3></div>
         </a>
-
-        <a class="video-card" href="https://www.youtube.com/@GetMoneyMechanics" target="_blank" rel="noopener">
-            <div class="video-thumb" style="background: linear-gradient(135deg, #CC0000 0%, #990000 100%);">
-                <div class="video-play"></div>
-            </div>
-            <div class="video-info">
-                <span class="cluster-tag tag-irmaa">IRMAA</span>
-                <h3>$974 Medicare Penalty — IRMAA Explained</h3>
-            </div>
+        <a class="video-card" href="https://youtu.be/RhdBd5El5Pk" target="_blank" rel="noopener">
+            <div class="video-thumb"><img src="https://img.youtube.com/vi/RhdBd5El5Pk/mqdefault.jpg" alt="SS Tax Torpedo" loading="lazy"><div class="video-play"></div></div>
+            <div class="video-info"><span class="cluster-tag tag-ss">TAX TORPEDO</span><h3>Social Security Taxed at 85%: The $1 Trap Most Retirees Miss</h3></div>
         </a>
+        <div id="latestVideoSlot"></div>
     </div>
 </section>
 
-<!-- ════ FOOTER ════ -->
-<footer class="footer">
-    <div>
-        <a href="https://www.youtube.com/@GetMoneyMechanics" target="_blank" rel="noopener">YouTube</a>
-        &nbsp;·&nbsp; © 2026 Money Mechanics
+<section class="channel-section">
+    <div class="channel-box">
+        <img class="channel-avatar" src="data:image/jpeg;base64,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" alt="Money Mechanics">
+        <div class="channel-info">
+            <h2>Money Mechanics</h2>
+            <p>We break down retirement tax math — Roth conversions, Social Security, IRMAA, RMDs, and more. Every number is verified against current IRS rules. No opinions, no products to sell, no financial advice. Just the math so you can make your own decisions.</p>
+            <a class="channel-btn" href="https://www.youtube.com/@GetMoneyMechanics?sub_confirmation=1" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+                Subscribe on YouTube
+            </a>
+        </div>
     </div>
+</section>
+
+<footer class="footer">
+    <div><a href="https://www.youtube.com/@GetMoneyMechanics" target="_blank" rel="noopener">YouTube</a> · © 2026 Money Mechanics</div>
     <div class="footer-slogan">No opinions. Just the math.</div>
 </footer>
 
-<!-- Chart.js CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-
 <script>
-    // ── State ──
-    let filingStatus = 'single';
-    let chartInstance = null;
+const CHANNEL_ID='UCZCrTDBOGLq9h-Swl2rVl3Q';
+const PINNED_IDS=['k95BDFlGjy0','jQ6G3vdE3rg','RhdBd5El5Pk'];
 
-    // ── Filing Status Toggle ──
-    function setFiling(status) {
-        filingStatus = status;
-        document.querySelectorAll('.filing-toggle button').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        event.target.classList.add('active');
-    }
-
-    // ── Number formatting ──
-    function formatCurrency(n) {
-        if (Math.abs(n) >= 1000) {
-            return (n < 0 ? '-' : '') + '$' + Math.abs(Math.round(n)).toLocaleString('en-US');
-        }
-        return (n < 0 ? '-' : '') + '$' + Math.abs(Math.round(n));
-    }
-
-    // ── Parse dollar input (strips commas, $, spaces) ──
-    function parseDollar(val) {
-        return parseFloat(val.replace(/[$,\s]/g, '')) || 0;
-    }
-
-    // ── Color gradient: red ↔ green based on percentage ──
-    function getResultColor(percent) {
-        // percent: negative = loss, positive = gain
-        // -20% or worse = deep red
-        // 0% = orange/yellow
-        // +20% or better = deep green
-        const clamped = Math.max(-25, Math.min(25, percent));
-        const t = (clamped + 25) / 50; // 0 to 1
-
-        // Color stops: deep red → red → orange → yellow → light green → green → deep green
-        const colors = [
-            { r: 180, g: 0, b: 0 },      // -25%  deep red
-            { r: 204, g: 0, b: 0 },      // -15%  red
-            { r: 230, g: 120, b: 0 },    // -5%   orange
-            { r: 200, g: 170, b: 0 },    //  0%   yellow-ish
-            { r: 100, g: 170, b: 0 },    // +5%   yellow-green
-            { r: 0, g: 150, b: 50 },     // +15%  green
-            { r: 0, g: 120, b: 40 },     // +25%  deep green
-        ];
-
-        const segment = t * (colors.length - 1);
-        const i = Math.floor(segment);
-        const f = segment - i;
-        const c1 = colors[Math.min(i, colors.length - 1)];
-        const c2 = colors[Math.min(i + 1, colors.length - 1)];
-
-        const r = Math.round(c1.r + (c2.r - c1.r) * f);
-        const g = Math.round(c1.g + (c2.g - c1.g) * f);
-        const b = Math.round(c1.b + (c2.b - c1.b) * f);
-
-        return `rgb(${r}, ${g}, ${b})`;
-    }
-
-    function getResultBg(percent) {
-        const clamped = Math.max(-25, Math.min(25, percent));
-        const t = (clamped + 25) / 50;
-
-        if (t < 0.4) return '#FFF0F0';      // red-ish bg
-        if (t < 0.5) return '#FFF5E8';      // orange bg
-        if (t < 0.6) return '#FFFFF0';      // yellow bg
-        return '#F0FFF0';                    // green-ish bg
-    }
-
-    // ── Main calculation ──
-    function calculate() {
-        const age = parseInt(document.getElementById('age').value) || 62;
-        const lifeExp = parseInt(document.getElementById('lifeExpectancy').value) || 85;
-        const amount = parseDollar(document.getElementById('conversionAmount').value) || 50000;
-        const currentRate = (parseFloat(document.getElementById('currentTaxRate').value) || 22) / 100;
-        const futureRate = (parseFloat(document.getElementById('futureTaxRate').value) || 24) / 100;
-        const annualReturn = (parseFloat(document.getElementById('returnRate').value) || 6) / 100;
-
-        const years = lifeExp - age;
-        if (years <= 0) {
-            alert('Life expectancy must be greater than current age.');
-            return;
-        }
-
-        // ── ROTH CONVERSION path ──
-        // Pay tax now, invest remaining, all growth is tax-free
-        const taxPaidNow = amount * currentRate;
-        const rothStart = amount - taxPaidNow;
-
-        // ── NO CONVERSION path ──
-        // Keep full amount, grow tax-deferred, pay tax on withdrawal
-        const tradStart = amount;
-
-        // Year-by-year projection
-        const rothValues = [];
-        const tradValues = [];
-        const labels = [];
-        let breakevenYear = -1;
-
-        for (let y = 0; y <= years; y++) {
-            const rothVal = rothStart * Math.pow(1 + annualReturn, y);
-            const tradGross = tradStart * Math.pow(1 + annualReturn, y);
-            const tradVal = tradGross * (1 - futureRate);
-
-            rothValues.push(Math.round(rothVal));
-            tradValues.push(Math.round(tradVal));
-            labels.push(age + y);
-
-            // Find breakeven
-            if (breakevenYear === -1 && rothVal >= tradVal && y > 0) {
-                breakevenYear = y;
+async function fetchLatestVideo(){
+    try{
+        const rss=`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+        const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(rss)}`);
+        const t=await r.text();
+        const x=new DOMParser().parseFromString(t,'text/xml');
+        for(const e of x.querySelectorAll('entry')){
+            let vid='';
+            const vn=e.getElementsByTagName('yt:videoId')[0];
+            if(vn)vid=vn.textContent;
+            else{const l=e.querySelector('link');if(l){const m=l.getAttribute('href').match(/v=([^&]+)/);if(m)vid=m[1];}}
+            if(vid&&!PINNED_IDS.includes(vid)){
+                const title=e.querySelector('title').textContent;
+                document.getElementById('latestVideoSlot').innerHTML=`<a class="video-card" href="https://youtu.be/${vid}" target="_blank" rel="noopener"><div class="video-thumb"><img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" alt="${title}" loading="lazy"><div class="video-play"></div></div><div class="video-info"><span class="cluster-tag tag-new">LATEST</span><h3>${title}</h3></div></a>`;
+                return;
             }
         }
+    }catch(e){console.log('RSS fetch skipped:',e);}
+}
+fetchLatestVideo();
 
-        const finalRoth = rothValues[rothValues.length - 1];
-        const finalTrad = tradValues[tradValues.length - 1];
-        const netBenefit = finalRoth - finalTrad;
-        const netPercent = ((netBenefit / finalTrad) * 100);
+let filingStatus='single',chartInstance=null;
+function setFiling(b,s){filingStatus=s;document.querySelectorAll('.filing-toggle button').forEach(x=>x.classList.remove('active'));b.classList.add('active');}
+function formatCurrency(n){return(n<0?'-':'')+'$'+Math.abs(Math.round(n)).toLocaleString('en-US');}
+function parseDollar(v){return parseFloat(v.replace(/[$,\s]/g,''))||0;}
+function getResultColor(p){const c=Math.max(-25,Math.min(25,p)),t=(c+25)/50,colors=[{r:180,g:0,b:0},{r:204,g:0,b:0},{r:230,g:120,b:0},{r:200,g:170,b:0},{r:100,g:170,b:0},{r:0,g:150,b:50},{r:0,g:120,b:40}],s=t*(colors.length-1),i=Math.floor(s),f=s-i,c1=colors[Math.min(i,6)],c2=colors[Math.min(i+1,6)];return`rgb(${Math.round(c1.r+(c2.r-c1.r)*f)},${Math.round(c1.g+(c2.g-c1.g)*f)},${Math.round(c1.b+(c2.b-c1.b)*f)})`;}
+function getResultBg(p){const t=(Math.max(-25,Math.min(25,p))+25)/50;return t<.4?'#FFF0F0':t<.5?'#FFF5E8':t<.6?'#FFFFF0':'#F0FFF0';}
 
-        // ── Update UI ──
-        const resultsEl = document.getElementById('results');
-        resultsEl.classList.add('visible');
-
-        // Headline
-        const headlineEl = document.getElementById('resultHeadline');
-        const color = getResultColor(netPercent);
-
-        if (breakevenYear > 0 && breakevenYear <= years) {
-            headlineEl.innerHTML = `
-                <div class="breakeven-label" style="color: ${color}">BREAKEVEN POINT</div>
-                <div class="breakeven-value" style="color: ${color}">${breakevenYear} Years</div>
-                <div class="breakeven-sub">Roth conversion pays off at age ${age + breakevenYear}</div>
-            `;
-        } else if (netBenefit > 0) {
-            headlineEl.innerHTML = `
-                <div class="breakeven-label" style="color: ${color}">IMMEDIATE BENEFIT</div>
-                <div class="breakeven-value" style="color: ${color}">Year 1</div>
-                <div class="breakeven-sub">Roth conversion is beneficial from the start</div>
-            `;
-        } else {
-            headlineEl.innerHTML = `
-                <div class="breakeven-label" style="color: ${color}">NO BREAKEVEN</div>
-                <div class="breakeven-value" style="color: ${color}">—</div>
-                <div class="breakeven-sub">Roth conversion does not pay off within your time horizon</div>
-            `;
-        }
-
-        // Net benefit box
-        const nbBox = document.getElementById('netBenefitBox');
-        nbBox.style.borderColor = color;
-        nbBox.style.backgroundColor = getResultBg(netPercent);
-        const arrow = netBenefit >= 0 ? '↑' : '↓';
-        const verdict = netBenefit > 0
-            ? 'Converting is mathematically favorable'
-            : netBenefit < 0
-                ? 'Keeping traditional is mathematically favorable'
-                : 'Both paths produce the same result';
-
-        nbBox.innerHTML = `
-            <div class="nb-label" style="color: ${color}">NET BENEFIT AT AGE ${lifeExp}</div>
-            <div class="nb-value" style="color: ${color}">${netBenefit >= 0 ? '+' : ''}${formatCurrency(netBenefit)}</div>
-            <div class="nb-percent" style="color: ${color}">${arrow} ${Math.abs(netPercent).toFixed(1)}%</div>
-            <div class="nb-verdict" style="color: ${color}">${verdict}</div>
-        `;
-
-        // Cards
-        document.getElementById('cardConvert').innerHTML = `
-            <div class="card-label">WITH Roth Conversion</div>
-            <div class="card-value">${formatCurrency(finalRoth)}</div>
-            <div class="card-detail">Tax-free at withdrawal</div>
-        `;
-
-        document.getElementById('cardNoConvert').innerHTML = `
-            <div class="card-label">WITHOUT Conversion</div>
-            <div class="card-value">${formatCurrency(finalTrad)}</div>
-            <div class="card-detail">After ${(futureRate * 100).toFixed(0)}% tax at withdrawal</div>
-        `;
-
-        // Chart
-        if (chartInstance) chartInstance.destroy();
-        const ctx = document.getElementById('chart').getContext('2d');
-        chartInstance = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Roth (after-tax)',
-                        data: rothValues,
-                        borderColor: '#FF6B00',
-                        backgroundColor: 'rgba(255, 107, 0, 0.08)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.3,
-                        pointRadius: 0,
-                        pointHitRadius: 10,
-                    },
-                    {
-                        label: 'Traditional (after-tax)',
-                        data: tradValues,
-                        borderColor: '#999999',
-                        backgroundColor: 'rgba(150, 150, 150, 0.06)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.3,
-                        pointRadius: 0,
-                        pointHitRadius: 10,
-                        borderDash: [6, 4],
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                interaction: { mode: 'index', intersect: false },
-                plugins: {
-                    legend: {
-                        labels: {
-                            font: { family: "'DM Sans', sans-serif", size: 12, weight: '600' },
-                            usePointStyle: true,
-                            pointStyle: 'line',
-                            padding: 20,
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: '#2A2A2A',
-                        titleFont: { family: "'DM Sans', sans-serif", size: 13 },
-                        bodyFont: { family: "'DM Mono', monospace", size: 13 },
-                        padding: 12,
-                        cornerRadius: 6,
-                        callbacks: {
-                            title: function(items) { return 'Age ' + items[0].label; },
-                            label: function(item) {
-                                return ' ' + item.dataset.label + ': ' + formatCurrency(item.raw);
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Age',
-                            font: { family: "'DM Sans', sans-serif", size: 12, weight: '600' },
-                            color: '#999',
-                        },
-                        grid: { display: false },
-                        ticks: {
-                            font: { family: "'DM Mono', monospace", size: 11 },
-                            color: '#999',
-                            maxTicksLimit: 10,
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'After-Tax Value ($)',
-                            font: { family: "'DM Sans', sans-serif", size: 12, weight: '600' },
-                            color: '#999',
-                        },
-                        grid: { color: 'rgba(0,0,0,0.05)' },
-                        ticks: {
-                            font: { family: "'DM Mono', monospace", size: 11 },
-                            color: '#999',
-                            callback: function(value) {
-                                if (value >= 1000000) return '$' + (value/1000000).toFixed(1) + 'M';
-                                if (value >= 1000) return '$' + (value/1000).toFixed(0) + 'K';
-                                return '$' + value;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Assumptions table
-        document.getElementById('assumptions').innerHTML = `
-            <h3>Assumptions Used</h3>
-            <table>
-                <tr><td>Filing status</td><td>${filingStatus === 'single' ? 'Single' : 'Married Filing Jointly'}</td></tr>
-                <tr><td>Conversion amount</td><td>${formatCurrency(amount)}</td></tr>
-                <tr><td>Tax paid on conversion (now)</td><td>${formatCurrency(taxPaidNow)} at ${(currentRate*100).toFixed(1)}%</td></tr>
-                <tr><td>After-tax amount invested (Roth)</td><td>${formatCurrency(rothStart)}</td></tr>
-                <tr><td>Future withdrawal tax rate</td><td>${(futureRate*100).toFixed(1)}%</td></tr>
-                <tr><td>Annual return assumption</td><td>${(annualReturn*100).toFixed(1)}%</td></tr>
-                <tr><td>Time horizon</td><td>${years} years (age ${age} → ${lifeExp})</td></tr>
-                <tr><td>Inflation adjustment</td><td>Not included (nominal values)</td></tr>
-            </table>
-        `;
-
-        // Scroll to results
-        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    // ── Auto-format conversion amount with commas ──
-    document.getElementById('conversionAmount').addEventListener('input', function(e) {
-        let val = e.target.value.replace(/[^0-9]/g, '');
-        if (val) {
-            e.target.value = parseInt(val).toLocaleString('en-US');
-        }
-    });
+function calculate(){
+    const age=parseInt(document.getElementById('age').value)||62,lifeExp=parseInt(document.getElementById('lifeExpectancy').value)||85,amount=parseDollar(document.getElementById('conversionAmount').value)||50000,currentRate=(parseFloat(document.getElementById('currentTaxRate').value)||22)/100,futureRate=(parseFloat(document.getElementById('futureTaxRate').value)||24)/100,annualReturn=(parseFloat(document.getElementById('returnRate').value)||6)/100;
+    const years=lifeExp-age;if(years<=0){alert('Life expectancy must be greater than current age.');return;}
+    const taxPaidNow=amount*currentRate,rothStart=amount-taxPaidNow,tradStart=amount;
+    const rothValues=[],tradValues=[],labels=[];let breakevenYear=-1;
+    for(let y=0;y<=years;y++){const rv=rothStart*Math.pow(1+annualReturn,y),tv=tradStart*Math.pow(1+annualReturn,y)*(1-futureRate);rothValues.push(Math.round(rv));tradValues.push(Math.round(tv));labels.push(age+y);if(breakevenYear===-1&&rv>=tv&&y>0)breakevenYear=y;}
+    const fR=rothValues[years],fT=tradValues[years],nb=fR-fT,np=(nb/fT)*100,color=getResultColor(np);
+    document.getElementById('results').classList.add('visible');
+    const hl=document.getElementById('resultHeadline');
+    if(breakevenYear>0&&breakevenYear<=years)hl.innerHTML=`<div class="breakeven-label" style="color:${color}">BREAKEVEN POINT</div><div class="breakeven-value" style="color:${color}">${breakevenYear} Years</div><div class="breakeven-sub">Roth conversion pays off at age ${age+breakevenYear}</div>`;
+    else if(nb>0)hl.innerHTML=`<div class="breakeven-label" style="color:${color}">IMMEDIATE BENEFIT</div><div class="breakeven-value" style="color:${color}">Year 1</div><div class="breakeven-sub">Roth conversion is beneficial from the start</div>`;
+    else hl.innerHTML=`<div class="breakeven-label" style="color:${color}">NO BREAKEVEN</div><div class="breakeven-value" style="color:${color}">—</div><div class="breakeven-sub">Roth conversion does not pay off within your time horizon</div>`;
+    const nbx=document.getElementById('netBenefitBox');nbx.style.borderColor=color;nbx.style.backgroundColor=getResultBg(np);
+    nbx.innerHTML=`<div class="nb-label" style="color:${color}">NET BENEFIT AT AGE ${lifeExp}</div><div class="nb-value" style="color:${color}">${nb>=0?'+':''}${formatCurrency(nb)}</div><div class="nb-percent" style="color:${color}">${nb>=0?'↑':'↓'} ${Math.abs(np).toFixed(1)}%</div><div class="nb-verdict" style="color:${color}">${nb>0?'Converting is mathematically favorable':nb<0?'Keeping traditional is mathematically favorable':'Both paths produce the same result'}</div>`;
+    document.getElementById('cardConvert').innerHTML=`<div class="card-label">WITH Roth Conversion</div><div class="card-value">${formatCurrency(fR)}</div><div class="card-detail">Tax-free at withdrawal</div>`;
+    document.getElementById('cardNoConvert').innerHTML=`<div class="card-label">WITHOUT Conversion</div><div class="card-value">${formatCurrency(fT)}</div><div class="card-detail">After ${(futureRate*100).toFixed(0)}% tax at withdrawal</div>`;
+    if(chartInstance)chartInstance.destroy();
+    chartInstance=new Chart(document.getElementById('chart').getContext('2d'),{type:'line',data:{labels,datasets:[{label:'Roth (after-tax)',data:rothValues,borderColor:'#FF6B00',backgroundColor:'rgba(255,107,0,.08)',borderWidth:3,fill:true,tension:.3,pointRadius:0,pointHitRadius:10},{label:'Traditional (after-tax)',data:tradValues,borderColor:'#999',backgroundColor:'rgba(150,150,150,.06)',borderWidth:3,fill:true,tension:.3,pointRadius:0,pointHitRadius:10,borderDash:[6,4]}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{font:{family:"'DM Sans',sans-serif",size:12,weight:'600'},usePointStyle:true,pointStyle:'line',padding:20}},tooltip:{backgroundColor:'#2A2A2A',titleFont:{family:"'DM Sans',sans-serif",size:13},bodyFont:{family:"'DM Mono',monospace",size:13},padding:12,cornerRadius:6,callbacks:{title:i=>'Age '+i[0].label,label:i=>' '+i.dataset.label+': '+formatCurrency(i.raw)}}},scales:{x:{title:{display:true,text:'Age',font:{family:"'DM Sans',sans-serif",size:12,weight:'600'},color:'#999'},grid:{display:false},ticks:{font:{family:"'DM Mono',monospace",size:11},color:'#999',maxTicksLimit:10}},y:{title:{display:true,text:'After-Tax Value ($)',font:{family:"'DM Sans',sans-serif",size:12,weight:'600'},color:'#999'},grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:"'DM Mono',monospace",size:11},color:'#999',callback:v=>v>=1e6?'$'+(v/1e6).toFixed(1)+'M':v>=1e3?'$'+(v/1e3).toFixed(0)+'K':'$'+v}}}}});
+    document.getElementById('assumptions').innerHTML=`<h3>Assumptions Used</h3><table><tr><td>Filing status</td><td>${filingStatus==='single'?'Single':'Married Filing Jointly'}</td></tr><tr><td>Conversion amount</td><td>${formatCurrency(amount)}</td></tr><tr><td>Tax paid on conversion (now)</td><td>${formatCurrency(taxPaidNow)} at ${(currentRate*100).toFixed(1)}%</td></tr><tr><td>After-tax amount invested (Roth)</td><td>${formatCurrency(rothStart)}</td></tr><tr><td>Future withdrawal tax rate</td><td>${(futureRate*100).toFixed(1)}%</td></tr><tr><td>Annual return assumption</td><td>${(annualReturn*100).toFixed(1)}%</td></tr><tr><td>Time horizon</td><td>${years} years (age ${age} → ${lifeExp})</td></tr><tr><td>Inflation adjustment</td><td>Not included (nominal values)</td></tr></table>`;
+    document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.getElementById('conversionAmount').addEventListener('input',function(e){let v=e.target.value.replace(/[^0-9]/g,'');if(v)e.target.value=parseInt(v).toLocaleString('en-US');});
 </script>
-
 </body>
 </html>
