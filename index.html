@@ -49,6 +49,14 @@
         .calc-btn{width:100%;padding:16px;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;background:var(--orange);color:white;border:none;border-radius:var(--radius);cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 0 #CC5500}
         .calc-btn:hover{transform:translateY(-1px);box-shadow:0 4px 0 #CC5500}
         .calc-btn:active{transform:translateY(1px);box-shadow:0 1px 0 #CC5500}
+        .slider-wrap{display:flex;flex-direction:column;gap:4px}
+        .tax-slider{-webkit-appearance:none;appearance:none;width:100%;height:8px;background:var(--gray-200);border-radius:4px;outline:none;cursor:pointer}
+        .tax-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;background:var(--orange);border-radius:50%;cursor:pointer;box-shadow:0 2px 8px rgba(255,107,0,.4);transition:transform .15s}
+        .tax-slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
+        .tax-slider::-moz-range-thumb{width:24px;height:24px;background:var(--orange);border-radius:50%;cursor:pointer;border:none;box-shadow:0 2px 8px rgba(255,107,0,.4)}
+        .tax-slider::-webkit-slider-runnable-track{height:8px;border-radius:4px}
+        .slider-labels{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:12px;color:var(--gray-400)}
+        .slider-current{font-size:20px;font-weight:700;color:var(--orange)}
         .results{display:none;margin-top:32px;animation:fadeIn .4s ease}
         @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
         .results.visible{display:block}
@@ -156,7 +164,7 @@
                 <div class="input-group"><label>Life Expectancy <span class="hint">(years)</span></label><input type="number" id="lifeExpectancy" placeholder="85" min="65" max="100"></div>
                 <div class="input-group"><label>Conversion Amount <span class="hint">($)</span></label><input type="text" id="conversionAmount" placeholder="50,000" inputmode="numeric"></div>
                 <div class="input-group"><label>Current Tax Rate <span class="hint">(% — rate you pay NOW)</span></label><input type="number" id="currentTaxRate" placeholder="22" min="0" max="50" step="0.1"></div>
-                <div class="input-group"><label>Future Tax Rate <span class="hint">(% — rate at withdrawal)</span></label><input type="number" id="futureTaxRate" placeholder="24" min="0" max="50" step="0.1"></div>
+                <div class="input-group"><label>Future Tax Rate <span class="hint">(% — rate at withdrawal)</span></label><div class="slider-wrap"><input type="range" id="futureTaxRate" min="10" max="40" step="1" value="24" class="tax-slider" oninput="updateSliderLabel(this)"><div class="slider-labels"><span>10%</span><span class="slider-current" id="futureTaxLabel">24%</span><span>40%</span></div></div></div>
                 <div class="input-group"><label>Expected Annual Return <span class="hint">(% before inflation)</span></label><input type="number" id="returnRate" placeholder="6" min="0" max="15" step="0.1"></div>
             </div>
             <button class="calc-btn" onclick="calculate()">Calculate Breakeven</button>
@@ -270,6 +278,7 @@ function calculate(){
     document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 document.getElementById('conversionAmount').addEventListener('input',function(e){let v=e.target.value.replace(/[^0-9]/g,'');if(v)e.target.value=parseInt(v).toLocaleString('en-US');});
+function updateSliderLabel(el){document.getElementById('futureTaxLabel').textContent=el.value+'%';if(document.getElementById('results').classList.contains('visible'))calculate();}
 </script>
 </body>
 </html>
