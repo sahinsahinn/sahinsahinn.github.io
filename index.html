@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Money Mechanics — Retirement Math Tools</title>
-    <meta name="description" content="Free Roth Conversion Breakeven Calculator with RMD impact. No opinions. Just the math.">
+    <title>Money Mechanics — The Roth & RMD Math Nobody's Selling You</title>
+    <meta name="description" content="Free retirement tax calculators. Roth conversions, RMDs, the math behind every decision. We don't sell funds. We don't book consultations. Just the math.">
+    <meta name="keywords" content="roth conversion calculator, rmd calculator, retirement tax math, roth breakeven, free retirement calculator">
+    <meta name="author" content="Money Mechanics">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Money Mechanics — The Roth & RMD Math Nobody's Selling You">
+    <meta property="og:description" content="Free retirement tax calculators. We don't sell funds. We don't book consultations. Just the math.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://getmoneymechanics.com">
+    <meta property="og:image" content="https://getmoneymechanics.com/favicon.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Money Mechanics — Retirement Math Tools">
+    <meta name="twitter:description" content="Free Roth & RMD calculators. No opinions. Just the math.">
+
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="canonical" href="https://getmoneymechanics.com">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3N2H0DJS3Q"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3N2H0DJS3Q');</script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,6 +35,8 @@
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--charcoal);line-height:1.6;-webkit-font-smoothing:antialiased}
         body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid-color) 1px,transparent 1px),linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;z-index:-1}
+
+        /* HEADER */
         .header{background:var(--white);border-bottom:3px solid var(--orange);padding:20px 0;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm)}
         .header-inner{max-width:960px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
         .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
@@ -24,33 +44,52 @@
         .logo-text{font-size:20px;font-weight:700;color:var(--charcoal);letter-spacing:-.5px}
         .logo-text span{color:var(--orange)}
         .tagline{font-size:13px;color:var(--gray-400);font-weight:500;letter-spacing:.5px}
-        .hero{max-width:960px;margin:0 auto;padding:48px 24px 32px;text-align:center}
-        .hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;color:var(--charcoal);line-height:1.2;margin-bottom:12px;letter-spacing:-1px}
+
+        /* HERO */
+        .hero{max-width:960px;margin:0 auto;padding:56px 24px 24px;text-align:center}
+        .hero h1{font-size:clamp(30px,5.5vw,46px);font-weight:700;color:var(--charcoal);line-height:1.15;margin-bottom:16px;letter-spacing:-1.5px}
         .hero h1 span{color:var(--orange)}
-        .hero p{font-size:17px;color:var(--charcoal-light);max-width:560px;margin:0 auto}
-        .calc-section{max-width:960px;margin:0 auto;padding:0 24px 60px}
+        .hero p.subtitle{font-size:18px;color:var(--charcoal-light);max-width:620px;margin:0 auto 12px}
+        .hero p.tagline-line{font-size:14px;color:var(--gray-400);font-style:italic}
+
+        /* INDEPENDENCE BANNER */
+        .independence-banner{max-width:960px;margin:24px auto 0;padding:0 24px}
+        .independence-box{background:var(--charcoal);color:white;border-radius:12px;padding:24px 28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;text-align:center;box-shadow:var(--shadow-md)}
+        @media(max-width:700px){.independence-box{grid-template-columns:1fr;gap:14px;padding:20px}}
+        .ind-item{display:flex;flex-direction:column;align-items:center;gap:6px}
+        .ind-icon{font-size:22px;color:var(--orange)}
+        .ind-text{font-size:13px;font-weight:600;color:white;line-height:1.3}
+        .ind-sub{font-size:11px;color:rgba(255,255,255,.5);font-weight:500}
+
+        /* CALCULATOR */
+        .calc-section{max-width:960px;margin:0 auto;padding:48px 24px 60px}
         .calc-container{background:var(--white);border:2px solid var(--gray-200);border-radius:12px;box-shadow:var(--shadow-md);overflow:hidden}
-        .calc-header{background:var(--charcoal);color:white;padding:20px 28px;display:flex;align-items:center;gap:12px}
-        .calc-header-icon{width:36px;height:36px;background:var(--orange);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px}
-        .calc-header h2{font-size:18px;font-weight:600}
-        .calc-header p{font-size:13px;opacity:.7;margin-top:2px}
+        .calc-header{background:var(--charcoal);color:white;padding:22px 28px;display:flex;align-items:center;gap:14px}
+        .calc-header-icon{width:40px;height:40px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+        .calc-header h2{font-size:19px;font-weight:700;letter-spacing:-.3px}
+        .calc-header p{font-size:13px;opacity:.7;margin-top:3px}
         .calc-body{padding:32px 28px}
         @media(max-width:600px){.calc-body{padding:24px 18px}}
-        .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+
+        .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
         @media(max-width:600px){.input-grid{grid-template-columns:1fr}}
         .input-group{display:flex;flex-direction:column;gap:6px}
         .input-group label{font-size:13px;font-weight:600;color:var(--charcoal)}
         .input-group .hint{font-size:11px;color:var(--gray-400);font-weight:400}
         .input-group input{font-family:'DM Mono',monospace;font-size:16px;padding:12px 14px;border:2px solid var(--gray-200);border-radius:var(--radius);background:var(--gray-100);color:var(--charcoal);transition:border-color .2s,box-shadow .2s;width:100%}
         .input-group input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,107,0,.15);background:var(--white)}
+
         .filing-toggle{display:flex;border:2px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;background:var(--gray-100)}
         .filing-toggle button{flex:1;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;border:none;background:transparent;color:var(--gray-400);cursor:pointer;transition:all .2s}
         .filing-toggle button.active{background:var(--orange);color:white}
-        .rmd-note{background:#FFF8F0;border:2px solid #FFE0B2;border-radius:var(--radius);padding:14px 18px;margin-bottom:28px;font-size:13px;color:var(--charcoal-light);line-height:1.5}
+
+        .rmd-note{background:#FFF8F0;border:2px solid #FFE0B2;border-radius:var(--radius);padding:14px 18px;margin-bottom:24px;font-size:13px;color:var(--charcoal-light);line-height:1.5}
         .rmd-note strong{color:var(--orange)}
-        .calc-btn{width:100%;padding:16px;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;background:var(--orange);color:white;border:none;border-radius:var(--radius);cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 0 #CC5500}
+
+        .calc-btn{width:100%;padding:18px;font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;background:var(--orange);color:white;border:none;border-radius:var(--radius);cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 0 #CC5500;letter-spacing:.3px}
         .calc-btn:hover{transform:translateY(-1px);box-shadow:0 4px 0 #CC5500}
         .calc-btn:active{transform:translateY(1px);box-shadow:0 1px 0 #CC5500}
+
         .results{display:none;margin-top:32px;animation:fadeIn .4s ease}
         @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
         .results.visible{display:block}
@@ -59,6 +98,7 @@
         .result-headline .breakeven-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
         .result-headline .breakeven-value{font-family:'DM Mono',monospace;font-size:clamp(36px,8vw,56px);font-weight:700;line-height:1.1;letter-spacing:-2px}
         .result-headline .breakeven-sub{font-size:15px;color:var(--charcoal-light);margin-top:6px}
+
         .result-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
         @media(max-width:600px){.result-cards{grid-template-columns:1fr}}
         .result-card{padding:20px;border-radius:var(--radius);border:2px solid}
@@ -69,18 +109,22 @@
         .card-convert .card-label{color:var(--orange)}
         .card-noconvert{background:var(--gray-100);border-color:var(--gray-200)}
         .card-noconvert .card-label{color:var(--gray-400)}
+
         .net-benefit-box{text-align:center;padding:24px;border-radius:var(--radius);border:3px solid;margin-bottom:24px}
         .net-benefit-box .nb-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
         .net-benefit-box .nb-value{font-family:'DM Mono',monospace;font-size:clamp(32px,7vw,48px);font-weight:700;letter-spacing:-1.5px}
         .net-benefit-box .nb-percent{font-family:'DM Mono',monospace;font-size:22px;font-weight:600;margin-top:2px}
         .net-benefit-box .nb-verdict{font-size:14px;font-weight:600;margin-top:8px}
+
         .rmd-impact{background:#FFF0F0;border:2px solid var(--red);border-radius:var(--radius);padding:20px;margin-bottom:24px;text-align:center}
         .rmd-impact .rmd-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--red);margin-bottom:8px}
         .rmd-impact .rmd-value{font-family:'DM Mono',monospace;font-size:24px;font-weight:700;color:var(--red)}
         .rmd-impact .rmd-detail{font-size:13px;color:var(--charcoal-light);margin-top:6px}
+
         .chart-container{background:var(--gray-100);border:2px solid var(--gray-200);border-radius:var(--radius);padding:20px;margin-bottom:24px}
         .chart-container h3{font-size:14px;font-weight:600;margin-bottom:16px}
         canvas{width:100%!important;height:300px!important}
+
         .assumptions{background:var(--gray-100);border:2px solid var(--gray-200);border-radius:var(--radius);padding:20px;margin-bottom:16px}
         .assumptions h3{font-size:14px;font-weight:600;margin-bottom:12px}
         .assumptions table{width:100%;font-size:13px;border-collapse:collapse}
@@ -88,6 +132,24 @@
         .assumptions td:first-child{color:var(--gray-400);width:55%}
         .assumptions td:last-child{font-family:'DM Mono',monospace;font-weight:500;text-align:right}
         .disclaimer{text-align:center;font-size:12px;color:var(--gray-400);padding:12px 0 0;line-height:1.5}
+
+        /* WHY DIFFERENT */
+        .why-section{max-width:960px;margin:0 auto;padding:0 24px 60px}
+        .why-box{background:var(--white);border:2px solid var(--gray-200);border-radius:12px;padding:32px;box-shadow:var(--shadow-sm)}
+        @media(max-width:600px){.why-box{padding:24px 20px}}
+        .why-title{font-size:20px;font-weight:700;color:var(--charcoal);margin-bottom:8px;letter-spacing:-.3px}
+        .why-subtitle{font-size:14px;color:var(--gray-400);margin-bottom:24px}
+        .compare-table{width:100%;border-collapse:collapse;font-size:14px}
+        .compare-table th{text-align:left;padding:12px;background:var(--gray-100);font-weight:700;color:var(--charcoal);border-bottom:2px solid var(--gray-200)}
+        .compare-table th:first-child{width:50%}
+        .compare-table th.us{color:var(--orange);text-align:center}
+        .compare-table th.them{color:var(--gray-400);text-align:center}
+        .compare-table td{padding:12px;border-bottom:1px solid var(--gray-200);color:var(--charcoal-light)}
+        .compare-table td.us{text-align:center;color:var(--green);font-weight:700;font-size:18px}
+        .compare-table td.them{text-align:center;color:var(--red);font-weight:700;font-size:18px}
+        .compare-table tr:last-child td{border-bottom:none}
+
+        /* VIDEOS */
         .videos-section{max-width:960px;margin:0 auto;padding:0 24px 60px}
         .videos-section h2{font-size:24px;font-weight:700;color:var(--charcoal);text-align:center;margin-bottom:8px;letter-spacing:-.5px}
         .videos-section .videos-sub{text-align:center;font-size:15px;color:var(--gray-400);margin-bottom:28px}
@@ -106,6 +168,8 @@
         .tag-ss{background:#E8F0FF;color:var(--blue)}
         .tag-new{background:var(--orange);color:white}
         .video-info h3{font-size:13px;font-weight:600;line-height:1.4;color:var(--charcoal)}
+
+        /* CHANNEL */
         .channel-section{max-width:960px;margin:0 auto;padding:0 24px 60px}
         .channel-box{background:var(--charcoal);border-radius:12px;padding:32px;display:flex;align-items:center;gap:24px;box-shadow:var(--shadow-lg)}
         @media(max-width:600px){.channel-box{flex-direction:column;text-align:center;padding:28px 20px}}
@@ -116,8 +180,11 @@
         .channel-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:white;text-decoration:none;padding:10px 20px;border-radius:var(--radius);font-size:14px;font-weight:700;transition:background .2s}
         .channel-btn:hover{background:#AA0000}
         .channel-btn svg{width:18px;height:18px;fill:currentColor}
-        .footer{background:var(--charcoal);color:rgba(255,255,255,.6);text-align:center;padding:32px 24px;font-size:13px;line-height:1.8}
+
+        /* FOOTER */
+        .footer{background:var(--charcoal);color:rgba(255,255,255,.6);text-align:center;padding:36px 24px;font-size:13px;line-height:1.8}
         .footer a{color:var(--orange);text-decoration:none}
+        .footer .footer-mission{color:rgba(255,255,255,.5);font-size:12px;max-width:560px;margin:8px auto 12px;line-height:1.6;font-style:italic}
         .footer .footer-slogan{color:rgba(255,255,255,.3);font-size:12px;margin-top:8px;letter-spacing:.5px}
     </style>
 </head>
@@ -134,8 +201,29 @@
 </header>
 
 <section class="hero">
-    <h1>Retirement Math <span>Tools</span></h1>
-    <p>Free calculators based on current IRS rules. Your data stays in your browser — nothing is stored on our servers.</p>
+    <h1>The Roth & RMD Math <span>Nobody's Selling You</span></h1>
+    <p class="subtitle">Free retirement tax calculators that show you the numbers behind every Roth conversion and RMD decision.</p>
+    <p class="tagline-line">Two systems. One retirement. We do the math.</p>
+</section>
+
+<section class="independence-banner">
+    <div class="independence-box">
+        <div class="ind-item">
+            <div class="ind-icon">⊘</div>
+            <div class="ind-text">No funds to sell</div>
+            <div class="ind-sub">Vanguard, Fidelity won't tell you this</div>
+        </div>
+        <div class="ind-item">
+            <div class="ind-icon">⊘</div>
+            <div class="ind-text">No consultations to book</div>
+            <div class="ind-sub">No advisor calling you tomorrow</div>
+        </div>
+        <div class="ind-item">
+            <div class="ind-icon">⊘</div>
+            <div class="ind-text">No data collected</div>
+            <div class="ind-sub">Your numbers stay in your browser</div>
+        </div>
+    </div>
 </section>
 
 <section class="calc-section">
@@ -143,8 +231,8 @@
         <div class="calc-header">
             <div class="calc-header-icon">⟳</div>
             <div>
-                <h2>Roth Conversion Breakeven Calculator</h2>
-                <p>Now includes RMD impact — how forced withdrawals change the math</p>
+                <h2>Roth × RMD Breakeven Calculator</h2>
+                <p>The two-system math: Roth conversion vs forced RMD withdrawals</p>
             </div>
         </div>
         <div class="calc-body">
@@ -165,7 +253,7 @@
                 <div class="input-group"><label>Expected Annual Return <span class="hint">(% before inflation)</span></label><input type="number" id="returnRate" placeholder="6" min="0" max="15" step="0.1"></div>
             </div>
             <div class="rmd-note">
-                <strong>RMD Impact Included:</strong> This calculator accounts for Required Minimum Distributions starting at age 73 (SECURE 2.0). Traditional IRA funds are subject to forced taxable withdrawals — Roth funds are not. The difference can be significant for high balances.
+                <strong>Full RMD Modeling:</strong> Calculator accounts for Required Minimum Distributions starting at age 73 (SECURE 2.0). Traditional IRAs are subject to forced taxable withdrawals. Roth IRAs are not. For high balances, this difference compounds significantly.
             </div>
             <button class="calc-btn" onclick="calculate()">Calculate Breakeven</button>
             <div class="results" id="results">
@@ -182,6 +270,27 @@
                 <div class="disclaimer">All calculations based on current IRS rules (SECURE 2.0, IRS Uniform Lifetime Table). This is a mathematical simulation, not financial advice.<br>Consult a qualified tax professional for your specific situation.</div>
             </div>
         </div>
+    </div>
+</section>
+
+<section class="why-section">
+    <div class="why-box">
+        <div class="why-title">Why this calculator is different</div>
+        <div class="why-subtitle">Most "free" Roth calculators are sales funnels. Here's the comparison:</div>
+        <table class="compare-table">
+            <thead>
+                <tr><th>What you get</th><th class="us">Money Mechanics</th><th class="them">Big firm calculators</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Free to use</td><td class="us">✓</td><td class="them">✓</td></tr>
+                <tr><td>Full RMD modeling included</td><td class="us">✓</td><td class="them">Partial</td></tr>
+                <tr><td>No sign-up required</td><td class="us">✓</td><td class="them">✕</td></tr>
+                <tr><td>No advisor calls afterward</td><td class="us">✓</td><td class="them">✕</td></tr>
+                <tr><td>No funds being sold to you</td><td class="us">✓</td><td class="them">✕</td></tr>
+                <tr><td>No affiliate commissions</td><td class="us">✓</td><td class="them">✕</td></tr>
+                <tr><td>Your data stays in your browser</td><td class="us">✓</td><td class="them">✕</td></tr>
+            </tbody>
+        </table>
     </div>
 </section>
 
@@ -210,7 +319,7 @@
         <div class="channel-avatar">MM</div>
         <div class="channel-info">
             <h2>Money Mechanics</h2>
-            <p>We break down retirement tax math — Roth conversions, Social Security, IRMAA, RMDs, and more. Every number is verified against current IRS rules. No opinions, no products to sell, no financial advice. Just the math so you can make your own decisions.</p>
+            <p>The retirement math channel that doesn't sell anything. We break down Roth conversions, RMDs, Social Security, IRMAA — every number verified against current IRS rules. No products, no consultations, no affiliate links. Just the math so you can make your own decisions.</p>
             <a class="channel-btn" href="https://www.youtube.com/@GetMoneyMechanics?sub_confirmation=1" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
                 Subscribe on YouTube
@@ -220,13 +329,13 @@
 </section>
 
 <footer class="footer">
+    <div class="footer-mission">Money Mechanics exists because retirement math shouldn't be locked behind sales calls. Every tool here is free, every calculation is transparent, every assumption is shown. We don't sell anything because the moment we do, the math gets a second agenda.</div>
     <div><a href="https://www.youtube.com/@GetMoneyMechanics" target="_blank" rel="noopener">YouTube</a> · <a href="https://www.youtube.com/post/UgkxE6c4PwnvNf_Gt0NL4LSSPXBBIpcR4z4v" target="_blank" rel="noopener">Suggest a Tool</a> · <a href="https://www.youtube.com/post/Ugkxikp1Mz60GDKsBUsCpw5o5zlK6E_oiO5u" target="_blank" rel="noopener">Feedback</a> · © 2026 Money Mechanics</div>
     <div class="footer-slogan">No opinions. Just the math.</div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-// ── RSS AUTO-FETCH ──
 const CHANNEL_ID='UCZCrTDBOGLq9h-Swl2rVl3Q';
 const PINNED_IDS=['k95BDFlGjy0','jQ6G3vdE3rg','RhdBd5El5Pk'];
 async function fetchLatestVideo(){
@@ -250,7 +359,6 @@ async function fetchLatestVideo(){
 }
 fetchLatestVideo();
 
-// ── IRS UNIFORM LIFETIME TABLE (SECURE 2.0, RMD age 73) ──
 const ULT={73:26.5,74:25.5,75:24.6,76:23.7,77:22.9,78:22.0,79:21.1,80:20.2,81:19.4,82:18.5,83:17.7,84:16.8,85:16.0,86:15.2,87:14.4,88:13.7,89:12.9,90:12.2,91:11.5,92:10.8,93:10.1,94:9.5,95:8.9,96:8.4,97:7.8,98:7.3,99:6.8,100:6.4,101:6.0,102:5.6,103:5.2,104:4.9,105:4.6};
 function getRMDFactor(age){return ULT[age]||4.6;}
 
@@ -274,43 +382,29 @@ function calculate(){
     const years=lifeExp-age;
     if(years<=0){alert('Life expectancy must be greater than current age.');return;}
 
-    // ── ROTH PATH ──
-    // Pay tax now on conversion amount, invest tax-free. No RMDs ever.
     const taxPaidNow=convAmt*currentRate;
     const rothStart=convAmt-taxPaidNow;
 
-    // ── TRADITIONAL PATH (with RMDs) ──
-    // Keep full amount in Traditional. Subject to RMDs at 73+.
-    // RMDs are calculated on TOTAL balance, but we track just the conversion portion.
-    // The conversion amount's share of RMDs is proportional.
-
     const rothValues=[];
-    const tradValues=[];  // after-tax value if liquidated
-    const tradBalances=[]; // pre-tax balance tracking
+    const tradValues=[];
     const labels=[];
     let breakevenYear=-1;
     let totalRMDtax=0;
 
-    let tradBal=convAmt; // pre-tax balance of the conversion portion
-    let totalTradBal=totalBal; // total traditional balance for RMD % calc
+    let tradBal=convAmt;
+    let totalTradBal=totalBal;
 
     for(let y=0;y<=years;y++){
         const currentAge=age+y;
-
-        // Roth: grows tax-free, no RMDs
         const rothVal=rothStart*Math.pow(1+annualReturn,y);
 
-        // Traditional: check for RMD
         if(y>0){
-            // Grow first
             tradBal*=(1+annualReturn);
             totalTradBal*=(1+annualReturn);
 
-            // RMD if age >= 73
             if(currentAge>=RMD_START){
                 const factor=getRMDFactor(currentAge);
                 const totalRMD=totalTradBal/factor;
-                // Our portion's share of total RMD
                 const shareRatio=totalTradBal>0?tradBal/totalTradBal:0;
                 const ourRMD=totalRMD*shareRatio;
                 const rmdTax=ourRMD*futureRate;
@@ -322,12 +416,9 @@ function calculate(){
             }
         }
 
-        // Traditional after-tax value = remaining balance * (1 - tax rate)
         const tradAfterTax=tradBal*(1-futureRate);
-
         rothValues.push(Math.round(rothVal));
         tradValues.push(Math.round(tradAfterTax));
-        tradBalances.push(Math.round(tradBal));
         labels.push(currentAge);
 
         if(breakevenYear===-1&&rothVal>=tradAfterTax&&y>0)breakevenYear=y;
@@ -341,17 +432,14 @@ function calculate(){
 
     document.getElementById('results').classList.add('visible');
 
-    // Headline
     const hl=document.getElementById('resultHeadline');
     if(breakevenYear>0&&breakevenYear<=years)hl.innerHTML=`<div class="breakeven-label" style="color:${color}">BREAKEVEN POINT</div><div class="breakeven-value" style="color:${color}">${breakevenYear} Years</div><div class="breakeven-sub">Roth conversion pays off at age ${age+breakevenYear}</div>`;
     else if(nb>0)hl.innerHTML=`<div class="breakeven-label" style="color:${color}">IMMEDIATE BENEFIT</div><div class="breakeven-value" style="color:${color}">Year 1</div><div class="breakeven-sub">Roth conversion is beneficial from the start</div>`;
     else hl.innerHTML=`<div class="breakeven-label" style="color:${color}">NO BREAKEVEN</div><div class="breakeven-value" style="color:${color}">—</div><div class="breakeven-sub">Roth conversion does not pay off within your time horizon</div>`;
 
-    // Net benefit
     const nbx=document.getElementById('netBenefitBox');nbx.style.borderColor=color;nbx.style.backgroundColor=getResultBg(np);
     nbx.innerHTML=`<div class="nb-label" style="color:${color}">NET BENEFIT AT AGE ${lifeExp}</div><div class="nb-value" style="color:${color}">${nb>=0?'+':''}${formatCurrency(nb)}</div><div class="nb-percent" style="color:${color}">${nb>=0?'↑':'↓'} ${Math.abs(np).toFixed(1)}%</div><div class="nb-verdict" style="color:${color}">${nb>0?'Converting is mathematically favorable':nb<0?'Keeping traditional is mathematically favorable':'Both paths produce the same result'}</div>`;
 
-    // RMD impact box
     const rmdBox=document.getElementById('rmdImpactBox');
     if(lifeExp>=RMD_START&&age<RMD_START){
         rmdBox.innerHTML=`<div class="rmd-impact"><div class="rmd-title">⚠ RMD Tax Drag (Traditional Path)</div><div class="rmd-value">${formatCurrency(totalRMDtax)} in forced taxes</div><div class="rmd-detail">Required Minimum Distributions from age 73 to ${lifeExp} generate taxable income you cannot avoid. Roth has zero RMDs.</div></div>`;
@@ -361,18 +449,15 @@ function calculate(){
         rmdBox.innerHTML='';
     }
 
-    // Cards
     document.getElementById('cardConvert').innerHTML=`<div class="card-label">WITH Roth Conversion</div><div class="card-value">${formatCurrency(fR)}</div><div class="card-detail">Tax-free at withdrawal · No RMDs</div>`;
     document.getElementById('cardNoConvert').innerHTML=`<div class="card-label">WITHOUT Conversion</div><div class="card-value">${formatCurrency(fT)}</div><div class="card-detail">After ${(futureRate*100).toFixed(0)}% tax · Subject to RMDs at 73</div>`;
 
-    // Chart
     if(chartInstance)chartInstance.destroy();
     chartInstance=new Chart(document.getElementById('chart').getContext('2d'),{type:'line',data:{labels,datasets:[
         {label:'Roth (after-tax, no RMDs)',data:rothValues,borderColor:'#FF6B00',backgroundColor:'rgba(255,107,0,.08)',borderWidth:3,fill:true,tension:.3,pointRadius:0,pointHitRadius:10},
         {label:'Traditional (after-tax, with RMDs)',data:tradValues,borderColor:'#999',backgroundColor:'rgba(150,150,150,.06)',borderWidth:3,fill:true,tension:.3,pointRadius:0,pointHitRadius:10,borderDash:[6,4]}
     ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{font:{family:"'DM Sans',sans-serif",size:12,weight:'600'},usePointStyle:true,pointStyle:'line',padding:20}},tooltip:{backgroundColor:'#2A2A2A',titleFont:{family:"'DM Sans',sans-serif",size:13},bodyFont:{family:"'DM Mono',monospace",size:13},padding:12,cornerRadius:6,callbacks:{title:i=>'Age '+i[0].label,label:i=>' '+i.dataset.label+': '+formatCurrency(i.raw)}}},scales:{x:{title:{display:true,text:'Age',font:{family:"'DM Sans',sans-serif",size:12,weight:'600'},color:'#999'},grid:{display:false},ticks:{font:{family:"'DM Mono',monospace",size:11},color:'#999',maxTicksLimit:10}},y:{title:{display:true,text:'After-Tax Value ($)',font:{family:"'DM Sans',sans-serif",size:12,weight:'600'},color:'#999'},grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:"'DM Mono',monospace",size:11},color:'#999',callback:v=>v>=1e6?'$'+(v/1e6).toFixed(1)+'M':v>=1e3?'$'+(v/1e3).toFixed(0)+'K':'$'+v}}}}});
 
-    // Assumptions
     const rmdYears=Math.max(0,lifeExp-Math.max(age,RMD_START));
     document.getElementById('assumptions').innerHTML=`<h3>Assumptions Used</h3><table>
         <tr><td>Filing status</td><td>${filingStatus==='single'?'Single':'Married Filing Jointly'}</td></tr>
@@ -392,7 +477,6 @@ function calculate(){
     document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-// Auto-format dollar inputs
 ['conversionAmount','totalBalance'].forEach(id=>{
     document.getElementById(id).addEventListener('input',function(e){
         let v=e.target.value.replace(/[^0-9]/g,'');
